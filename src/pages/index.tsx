@@ -1,11 +1,23 @@
+import { Link } from "gatsby";
 import * as React from "react";
+import Layout from "./components/Layout";
+import Seo from "./components/Seo";
 
-const IndexPage = () => {
+/**
+ * 기본 index페이지
+ * 여기서 Link태그는 react의 Link가 아닌 Gatsby의 Link이다.
+ * @returns
+ */
+export default function IndexPage() {
   return (
-    <div>
-      <h1>Welcome to my DevStickers</h1>
-    </div>
+    <Layout title={"Welcome to my DevStickers 👋"}>
+      <div></div>
+    </Layout>
   );
-};
+}
 
-export default IndexPage;
+// export function Head() {
+//   return <title>DevStickers</title>;
+// }
+
+export const Head = () => <Seo title={"Home"} />;
