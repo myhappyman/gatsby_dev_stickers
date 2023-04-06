@@ -1,49 +1,21 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+<h1>설치 및 구동</h1>
+<p><b>Gatsby CLI 설치 (global)</b></p>
+`npm i -g gatsby-cli`
 
-## 🚀 Quick start
+<p><b>Gatsby 프로젝트 첫 시작</b></p>
+`gatsby new`
 
-1.  **Create a Gatsby site.**
+<p><b>Gatsby 개발자모드 구동</b></p>
+`npm run develop`
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+<h1>니콜라스의 Gatsby 추천이유</h1>
+<p>2017년 기준 정적 웹사이트를 만들어주는 하나의 오픈소스 프레임워크로 시작되었다.<p>
+<p>정적인 웹사이트란 사용자 맞춤형 컨텐츠를 제공하는 넷플릭스라던가 SNS인 페이스북, 트위터와 같은 실시간성이 필요한 곳이 아닌 블로그나, 전자상거래 사이트같은 것들을 말한다.</p>
+<p>즉, 리액트와 같이 거대한 사이트를 만드는게 아닌 가볍게 HTML, CSS, JS정도로만 돌아가는 제공할 데이터를 담고 로드시키는 정도의 페이지를 만드는데 최적화 되어있다.<p>
+<p>개츠비로 만든 대부분의 웹사이트는 빌드, 렌더링될 떄 이미 데이터들이 안에 포함되어 있다.</p>
+<p>CMS(컨텐츠 관리체계)는 비개발자인 사람들이 컨텐츠를 계속 올리는 웹사이트 혹은 앱들을 말하는데, Gatsby는 사이트를 빌드하는 시점에 그 컨텐츠를 불러와 웹사이트를 만들어준다.</p>
+<p>Gatsby의 동작방식은 react와 비슷한데 html소스코드가 존재하는게 아니라 약간의 js와 기본적인 html구조만 있다. 즉 사용자가 js를 사용안하도록 설정하거나, 인터넷 환경이 좋지 못하다면 페이지가 뜨지 않을 수도 있다.</p>
+<p>실제로 Gatsby의 페이지를 열어서 소스코드를 보기하면 정말 몇가지의 div와 id값만 존재하는 걸 볼 수 있다.(react도 마찬가지...)</p>
+<p>정리하자면 사용자는 페이지를 접속하면 브라우저는 js를 다운로드하고 실행되면서 페이지를 만들기 시작하고 사용자에게 문서(UI)를 보여주게 된다.</p>
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
-
-2.  **Start developing.**
-
-    Navigate into your new site’s directory and start it up.
-
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
-
-3.  **Open the code and start customizing!**
-
-    Your site is now running at http://localhost:8000!
-
-    Edit `src/pages/index.tsx` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+<p>위에서 언급한 react의 단점인 사용자의 안좋은 네트워크 상태, 자바스크립트를 사용하지 않는 환경에 대응하기 위해 Gatsby가 탄생하게 되었다.(Wow..?!)</p>
