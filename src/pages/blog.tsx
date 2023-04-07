@@ -1,17 +1,29 @@
 import React from "react";
+import { PageProps, graphql } from "gatsby";
 import Layout from "./components/Layout";
 import Seo from "./components/Seo";
 
-export default function Blog() {
+export default function Blog({ data }: PageProps<Queries.BlogTitlesQuery>) {
+  console.log(data);
   return (
     <Layout title={"Blog"}>
-      <p>The most recent news from my shop.</p>
+      <ul>
+        {data.allFile.nodes.map((file, index) => (
+          <li key={index}>{file.name}</li>
+        ))}
+      </ul>
     </Layout>
   );
 }
 
-// export function Head() {
-//   return <title>Blog</title>;
-// }
-
+// gatsby를 사용중이기 때문에 아래와같은 문법이 가능하고 자동으로 감지되어서 동작이 된다.
+export const query = graphql`
+  query BlogTitles {
+    allFile {
+      nodes {
+        name
+      }
+    }
+  }
+`;
 export const Head = () => <Seo title={"Blog"} />;

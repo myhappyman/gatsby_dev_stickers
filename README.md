@@ -85,3 +85,94 @@ query{
 <p>npm start등으로 구동을 하게되면 localhost:8000 외에 graphql로 끝나는 주소를 하나 더 주게 되는데, 접속해보면 gastby로 작성중인 사이트의 정보를 graphql로 조회해볼 수 있는 UI가 나온다.</p>
 <p>site속성에는 여러가지 있는데 그 중 siteMetadata는 gatsby-config에 적어준 meta정보를 조회해오는데, 변경된 사항을 조회해보려면 서버를 재시작해야한다.</p>
 <p>본격적으로 gatsby에서 graphql을 사용하기 위해 static query라는 것을 사용할 것이다.</p>
+<p>graphql를 통해 작성한 소스는 npm build를 하게 되면 그 순간 쿼리들이 동작되고 html로 데이터를 채우게 된다.</p>
+
+<h1>Page Query</h1>
+<p>useStaticQuery를 통해 gatsby설정의 값을 쿼리로 가져오고 적용하는 방법을 알아보았는데, 이번엔 gatsby라이브러리를 추가하고 page Query를 사용하여 페이지에 데이터를 처리하는 방법을 알아본다.</p>
+<p>참고 url : <a href="https://www.gatsbyjs.com/plugins">https://www.gatsbyjs.com/plugins</a></p>
+<p>추가해볼 플러그인은 source-filesystem이다.</p>
+
+`npm install gatsby-source-filesystem`
+
+<p>위 명령어로 설치를 해주고, 끝나면 약간의 설정을 해야하는데, gatsby-config에서 plugin부분에 추가를 해준다. resolve부분에는 사용할 플러그인 이름을, option에는 어떤 부분을 볼건지 경로 설정을 한다.<br/>
+src와 같은 위치에 blog-posts라는 디렉토리를 생성하고 해당 디렉토리를 바라보도록 설정한다.
+</p>
+
+```gastby-config.ts
+  plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/blog-posts`,
+      },
+    },
+  ],
+```
+
+<p>이후 src와 같은 위치에 만든 blog-posts에 2가지 파일을 만들고 아래와 같은 graphql 쿼리를 날려보면 파일명을 쿼리로 가져오는 것을 볼 수 있다.</p>
+
+```
+query MyQuery {
+  allFile {
+    nodes {
+      name
+    }
+  }
+}
+
+{
+  "data": {
+    "allFile": {
+      "nodes": [
+        {
+          "name": "Hello"
+        },
+        {
+          "name": "ByeBye"
+        }
+      ]
+    }
+  },
+  "extensions": {}
+}
+```
+
+<p>설정이 끝나면 실제로 blog.tsx에서 해당 쿼리를 사용해본다. export const query = graphql``;로 쿼리를 작성하고 해당 컴포넌트에서 props로 데이터를 받아오면 마법처럼 데이터를 가져와서 파싱을 할 수 있다.<br/>
+import가 자동으로 안되어서 수동으로 입력해주었다.
+</p>
+```blog.tsx
+import React from "react";
+import { PageProps, graphql } from "gatsby";
+import Layout from "./components/Layout";
+import Seo from "./components/Seo";
+
+export default function Blog({ data }: PageProps<Queries.BlogTitlesQuery>) {
+console.log(data);
+return (
+<Layout title={"Blog"}>
+
+<ul>
+{data.allFile.nodes.map((file, index) => (
+<li key={index}>{file.name}</li>
+))}
+</ul>
+</Layout>
+);
+}
+
+// gatsby를 사용중이기 때문에 아래와같은 문법이 가능하고 자동으로 감지되어서 동작이 된다.
+export const query = graphql`  query BlogTitles {
+    allFile {
+      nodes {
+        name
+      }
+    }
+  }`;
+export const Head = () => <Seo title={"Blog"} />;
+
+```
+
+```
+
+<h1>MDX</h1>
+<p></p>
