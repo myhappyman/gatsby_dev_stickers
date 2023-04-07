@@ -140,24 +140,25 @@ query MyQuery {
 <p>설정이 끝나면 실제로 blog.tsx에서 해당 쿼리를 사용해본다. export const query = graphql``;로 쿼리를 작성하고 해당 컴포넌트에서 props로 데이터를 받아오면 마법처럼 데이터를 가져와서 파싱을 할 수 있다.<br/>
 import가 자동으로 안되어서 수동으로 입력해주었다.
 </p>
-```blog.tsx
+
+```Typescript
+
 import React from "react";
 import { PageProps, graphql } from "gatsby";
 import Layout from "./components/Layout";
 import Seo from "./components/Seo";
 
 export default function Blog({ data }: PageProps<Queries.BlogTitlesQuery>) {
-console.log(data);
-return (
-<Layout title={"Blog"}>
 
-<ul>
-{data.allFile.nodes.map((file, index) => (
-<li key={index}>{file.name}</li>
-))}
-</ul>
-</Layout>
-);
+    return (
+        <Layout title={"Blog"}>
+            <ul>
+                {data.allFile.nodes.map((file, index) => (
+                    <li key={index}>{file.name}</li>
+                ))}
+            </ul>
+        </Layout>
+    );
 }
 
 // gatsby를 사용중이기 때문에 아래와같은 문법이 가능하고 자동으로 감지되어서 동작이 된다.
@@ -172,7 +173,22 @@ export const Head = () => <Seo title={"Blog"} />;
 
 ```
 
-```
-
 <h1>MDX</h1>
-<p></p>
+<p>MDX는 마크다운 + JSX라고 할 수 있다. 즉, 마크다운 + React인 셈이다.</p>
+
+`npm install gatsby-plugin-mdx gatsby-source-filesystem @mdx-js/react`
+
+<p>위 명령어로 mdx를 설치하고, gatsby-config파일에 플러그인 부분엔  `gatsby-plugin-mdx`를 추가한다.<br/>
+설정이 끝나면 서버를 재기동하고 md파일들은 mdx로 변경 후 graphql에 가서 새로고침을 해보면 allMdx카테고리가 추가 된 것을 볼 수 있다. gatsby내 mdx파일들의 정보를 찾아준다</p>
+
+<p>allMdx > nodes 로 가면 다양한 정보를 볼 수 있다.</p>
+<ul>
+<li>excerpt: 간략한 정보로 너무 길어지면 ...으로 준다.<em>pruneLength에서 상세 ...처리할 길이를 설정 할 수 있다.</em></li>
+<li>frontmatter: mdx파일의 ---  ~ --- 사이에 정의한 정보를 가져와준다. 추가되면 새로고침 후 항목이 갱신되는 걸 볼 수 있다.</li>
+</ul>
+
+<h1>slug</h1>
+<p>URL 친화적인 방식으로 작성되는 -으로 이루어진 문자열을 슬러그라고 부른다.<br/>
+해당 문자열을 통해서 url의 주소값으로 사용한다.</p>
+<p>gatsby에서 새로운 주소의 뎁스를 만들고 생성된 뎁스에서 동작되게 하려면 blog폴더를 만들고 기존 blog.tsx를 이동 시킨 후 index.tsx로 변경해주어야 한다.</p>
+<p>slug로 사용한 페이지가 동적으로 페이지처리가 되기 위해 해당 경로에 {mdx.frontmatter_slug}.tsx파일을 생성하고, <br/> 해당 파일에 블로그 포스터로 표현될 tsx를 작성한다. Link를 통해 이동해보면 더이상 404가 안뜨고 데이터가 표시되는 걸 볼 수 있다.</p>
