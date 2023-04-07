@@ -80,3 +80,8 @@ query{
 
 <p>query로 시작하고 어떤 문서에서 어떤것을 가져올 건지 명확하게 요청하면 그것에 대하여 가져와준다.
 기존의 api들과 다른점은 명확하게 요청을 해야 그것만 가져와준다는것인데, 이러한 점때문에 한번에 불필요한 데이터까지 api요청 하나로 잔득 가져오는 불상사가 줄어든다.</p>
+
+<h1>Gatsby에서 GraphQL사용하기</h1>
+<p>npm start등으로 구동을 하게되면 localhost:8000 외에 graphql로 끝나는 주소를 하나 더 주게 되는데, 접속해보면 gastby로 작성중인 사이트의 정보를 graphql로 조회해볼 수 있는 UI가 나온다.</p>
+<p>site속성에는 여러가지 있는데 그 중 siteMetadata는 gatsby-config에 적어준 meta정보를 조회해오는데, 변경된 사항을 조회해보려면 서버를 재시작해야한다.</p>
+<p>본격적으로 gatsby에서 graphql을 사용하기 위해 static query라는 것을 사용할 것이다.</p>
