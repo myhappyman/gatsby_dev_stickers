@@ -192,3 +192,8 @@ export const Head = () => <Seo title={"Blog"} />;
 해당 문자열을 통해서 url의 주소값으로 사용한다.</p>
 <p>gatsby에서 새로운 주소의 뎁스를 만들고 생성된 뎁스에서 동작되게 하려면 blog폴더를 만들고 기존 blog.tsx를 이동 시킨 후 index.tsx로 변경해주어야 한다.</p>
 <p>slug로 사용한 페이지가 동적으로 페이지처리가 되기 위해 해당 경로에 {mdx.frontmatter_slug}.tsx파일을 생성하고, <br/> 해당 파일에 블로그 포스터로 표현될 tsx를 작성한다. Link를 통해 이동해보면 더이상 404가 안뜨고 데이터가 표시되는 걸 볼 수 있다.</p>
+
+<h1>Blog Post내용 작성해보기</h1>
+<p>mdx를 설치한 후 특정 포맷형태로 {mdx.frontmatter__변수명}tsx 파일을 작성하였다.<br/>
+default로 표현되는 컴포넌트에서 props를 받아보면 다양한 것들을 받아오는 걸 볼 수 있는데, 그 중 pageContext부분의
+id값이나 frontmatter__slug와 같은 값들이다. 해당 값을 이용해서 graphql에 api로 요청할 수 있다. </p>

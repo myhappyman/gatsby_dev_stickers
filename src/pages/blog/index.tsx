@@ -32,11 +32,11 @@ export const query = graphql`
     allMdx {
       nodes {
         frontmatter {
+          author
+          category
           date(formatString: "YYYY.MM.DD")
           slug
-          category
           title
-          author
         }
         excerpt(pruneLength: 50)
       }
